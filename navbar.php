@@ -12,7 +12,7 @@
                         <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/index.php') { echo 'active'; } ?>" href="index.php">Anasayfa</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/characters.php') { echo 'active'; } ?>" href="characters.php">Karakterler</a>
+                        <a class="nav-link <?php if (strpos($_SERVER['REQUEST_URI'],'/characters.php') !== false) { echo 'active'; } ?>" href="characters.php">Karakterler</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link <?php if ($_SERVER['REQUEST_URI'] == '/houses.php') { echo 'active'; } ?>" href="houses.php">Evler</a>
