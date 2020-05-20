@@ -1,25 +1,15 @@
 <?php
 
-$config = include 'config.php';
+include 'API.php';
 
 function getTitle()
 {
     return 'Büyüler';
 }
 
-$spells = file_get_contents("https://www.potterapi.com/v1/spells?key={$config['api_key']}");
+$api = new API();
 
-$decodedSpells = json_decode($spells, true);
-
-$spellDetails = [];
-
-foreach ($decodedSpells as $spell) {
-    $spellDetails[] = [
-        'spell' => $spell['spell'],
-        'type' => $spell['type'],
-        'effect' => $spell['effect'],
-    ];
-}
+$spells = $api->getSpells();
 
 ?>
 
@@ -55,13 +45,14 @@ include 'navbar.php';
                 <tbody>
                 <?php
                 $counter = 1;
-                foreach ($spellDetails as $detail) {
+
+                foreach ($spells as $spell) {
                     ?>
                     <tr>
                         <th scope="row"><?php echo $counter++; ?> </th>
-                        <td><?php echo $detail['spell']; ?></td>
-                        <td><?php echo $detail['type']; ?></td>
-                        <td><?php echo $detail['effect']; ?></td>
+                        <td><?php echo $spell['spell']; ?></td>
+                        <td><?php echo $spell['type']; ?></td>
+                        <td><?php echo $spell['effect']; ?></td>
                     </tr>
                 <?php } ?>
                 </tbody>
